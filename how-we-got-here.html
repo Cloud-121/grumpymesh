@@ -22,6 +22,54 @@ body{
     line-height:1.8;
 }
 
+.top-nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 40px;
+    background:rgba(13,13,13,0.85);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+.top-nav .brand{
+    font-size:20px;
+    font-weight:800;
+    color:#ff7a00;
+    letter-spacing:1px;
+    text-decoration:none;
+}
+
+.top-nav .nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.top-nav .nav-links a{
+    color:#999;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:500;
+    transition:color .2s;
+}
+
+.top-nav .nav-links a:hover,
+.top-nav .nav-links a.active{
+    color:#ff7a00;
+}
+
+@media(max-width:768px){
+.top-nav{
+    padding:14px 20px;
+}
+.top-nav .nav-links{
+    gap:15px;
+}
+}
+
 .container{
     width:90%;
     max-width:900px;
@@ -199,11 +247,16 @@ font-size:24px;
 
 <body>
 
-<div class="container">
+<div class="top-nav">
+    <a href="index.html" class="brand">GRUMPYMESH</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="board.html">Board</a>
+        <a href="how-we-got-here.html" class="active">Our Story</a>
+    </div>
+</div>
 
-<a href="index.html" class="back-button">
-← Back to Home
-</a>
+<div class="container">
 
 <div class="hero">
 

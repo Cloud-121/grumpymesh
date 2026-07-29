@@ -6,21 +6,6 @@
 
 <title>GrumpyMesh | Coming Soon</title>
 
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-  }
-}
-</script>
-<style>
-#model-canvas { width: 100%; height: 500px; border-radius: 12px; background: #111; display: block; }
-.model-wrapper { margin: 40px auto; max-width: 900px; }
-.model-caption { color: #cfcfcf; font-size: 16px; margin-top: 12px; }
-.model-loading { color: #ff7a00; font-size: 18px; padding: 200px 0; }
-</style>
-
 <style>
 
 *{
@@ -35,10 +20,8 @@ body{
     color:white;
     min-height:100vh;
     display:flex;
-    justify-content:center;
-    align-items:center;
+    flex-direction:column;
     overflow-x:hidden;
-    padding:40px 20px;
     position:relative;
 }
 
@@ -60,6 +43,13 @@ body:before{
     width:100%;
     max-width:900px;
     text-align:center;
+    margin:0 auto;
+    padding:40px 20px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
 }
 
 .logo{
@@ -180,45 +170,50 @@ body:before{
     line-height:1.7;
 }
 .top-nav{
-
-    position:absolute;
-    top:30px;
-    right:30px;
+    position:sticky;
+    top:0;
     z-index:1000;
-
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 40px;
+    background:rgba(10,10,10,0.85);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.06);
 }
 
-.top-nav a{
-
-    display:inline-block;
-    background:rgba(255,122,0,.12);
-    border:2px solid #ff7a00;
+.top-nav .brand{
+    font-size:20px;
+    font-weight:800;
     color:#ff7a00;
+    letter-spacing:1px;
     text-decoration:none;
-    padding:12px 22px;
-    border-radius:8px;
-    font-size:16px;
-    font-weight:bold;
-    transition:.25s;
-
 }
 
-.top-nav a:hover{
-
-    background:#ff7a00;
-    color:#111;
-    transform:translateY(-2px);
-
+.top-nav .nav-links{
+    display:flex;
+    gap:30px;
 }
+
+.top-nav .nav-links a{
+    color:#999;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:500;
+    transition:color .2s;
+}
+
+.top-nav .nav-links a:hover,
+.top-nav .nav-links a.active{
+    color:#ff7a00;
+}
+
 @media(max-width:768px){
 .top-nav{
-
-    position:relative;
-    top:0;
-    right:0;
-    text-align:center;
-    margin-bottom:30px;
-
+    padding:14px 20px;
+}
+.top-nav .nav-links{
+    gap:15px;
 }
 .logo{
     font-size:48px;
@@ -257,9 +252,12 @@ body:before{
 
 <body>
 <div class="top-nav">
-    <a href="how-we-got-here.html">
-        📖 How We Got Here
-    </a>
+    <a href="index.html" class="brand">GRUMPYMESH</a>
+    <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="board.html">Board</a>
+        <a href="how-we-got-here.html">Our Story</a>
+    </div>
 </div>
 <div class="container">
 
@@ -326,7 +324,7 @@ The Grumpy Repeater is designed for maximum uptime, efficient power usage, and s
         The Grumpy Mesh Board features a powerful
         <strong>1 watt MeshCore radio</strong>,
         an <strong>SMA antenna connector</strong>,
-        and <strong>built-in Wi-Fi</strong> with external antenna connector, for convenient firmware updates. Build your own enclosure for a portable node, solar repeater, vehicle installation, or any custom MeshCore project.
+        and <strong>Wi-Fi</strong> with external antenna connector, for convenient firmware updates. Build your own enclosure for a portable node, solar repeater, vehicle installation, or any custom MeshCore project.
     </p>
 
     <p style="margin-top:15px;">
@@ -335,98 +333,21 @@ The Grumpy Repeater is designed for maximum uptime, efficient power usage, and s
 
 </div>
 
-<div class="model-wrapper">
-    <div id="model-container">
-        <div class="model-loading" id="model-loading">Loading 3D Model...</div>
-        <canvas id="model-canvas" style="display:none;"></canvas>
-    </div>
-    <div class="model-caption">3D model of the Grumpy Mesh Board.</div>
-</div>
-
-<script type="module">
-import * as THREE from 'three';
-import { VRMLLoader } from 'three/addons/loaders/VRMLLoader.js';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-
-const canvas = document.getElementById('model-canvas');
-const container = document.getElementById('model-container');
-const loading = document.getElementById('model-loading');
-
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x111111);
-
-const camera = new THREE.PerspectiveCamera(45, container.clientWidth / 500, 0.01, 100000);
-camera.position.set(0, 0, 100);
-
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-renderer.setSize(container.clientWidth, 500);
-renderer.setPixelRatio(window.devicePixelRatio);
-
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.dampingFactor = 0.05;
-
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-scene.add(ambientLight);
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-directionalLight.position.set(50, 100, 50);
-scene.add(directionalLight);
-
-const loader = new VRMLLoader();
-loader.load('grumpy.wrl', function (object) {
-    object.traverse(function (child) {
-        if (child.isMesh) {
-            child.material.side = THREE.DoubleSide;
-        }
-    });
-    scene.add(object);
-
-    const box = new THREE.Box3().setFromObject(object);
-    const center = box.getCenter(new THREE.Vector3());
-    const size = box.getSize(new THREE.Vector3());
-    const maxDim = Math.max(size.x, size.y, size.z);
-    const fov = camera.fov * (Math.PI / 180);
-    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-    cameraZ *= 1.5;
-    camera.position.set(center.x, center.y, cameraZ);
-    controls.target.copy(center);
-    controls.update();
-
-    loading.style.display = 'none';
-    canvas.style.display = 'block';
-
-    function animate() {
-        requestAnimationFrame(animate);
-        controls.update();
-        renderer.render(scene, camera);
-    }
-    animate();
-}, function (progress) {
-    if (progress.total) {
-        const pct = Math.round((progress.loaded / progress.total) * 100);
-        loading.textContent = `Loading 3D Model... ${pct}%`;
-    }
-}, function (error) {
-    loading.textContent = 'Failed to load 3D model.';
-    console.error(error);
-});
-
-window.addEventListener('resize', () => {
-    camera.aspect = container.clientWidth / 500;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, 500);
-});
-</script>
-
 <div style="margin-top:50px; text-align:center;">
-    <a href="how-we-got-here.html"
-       style="color:#ff7a00;
+    <a href="board.html"
+       style="display:inline-block;
+              background:#ff7a00;
+              color:white;
+              padding:18px 40px;
+              border-radius:8px;
               font-size:22px;
               font-weight:bold;
-              text-decoration:none;">
-        📖 How We Got Here
+              text-decoration:none;
+              margin-bottom:20px;">
+        📋 View Grumpy Mesh Board Product Page
     </a>
 </div>
+
 <div class="ml-embedded" data-form="Pc8Yta"></div>
 
 <div class="footer">
