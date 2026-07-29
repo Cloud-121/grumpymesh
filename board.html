@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Grumpy Mesh Board | Product</title>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',Arial,Helvetica,sans-serif;
+    background:#0a0a0a;
+    color:#e0e0e0;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 40px;
+    background:rgba(10,10,10,0.85);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+nav .brand{
+    font-size:20px;
+    font-weight:800;
+    color:#ff7a00;
+    letter-spacing:1px;
+    text-decoration:none;
+}
+
+nav .nav-links{
+    display:flex;
+    gap:30px;
+}
+
+nav .nav-links a{
+    color:#999;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:500;
+    transition:color .2s;
+}
+
+nav .nav-links a:hover,
+nav .nav-links a.active{
+    color:#ff7a00;
+}
+
+.hero{
+    text-align:center;
+    padding:100px 20px 60px;
+}
+
+.hero .tag{
+    display:inline-block;
+    background:rgba(255,122,0,0.12);
+    color:#ff7a00;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    padding:8px 20px;
+    border-radius:100px;
+    border:1px solid rgba(255,122,0,0.25);
+    margin-bottom:28px;
+}
+
+.hero h1{
+    font-size:64px;
+    font-weight:900;
+    color:#fff;
+    line-height:1.1;
+    margin-bottom:20px;
+    letter-spacing:-1px;
+}
+
+.hero h1 span{
+    color:#ff7a00;
+}
+
+.hero p{
+    font-size:20px;
+    color:#888;
+    max-width:600px;
+    margin:0 auto;
+    line-height:1.7;
+    font-weight:300;
+}
+
+.viewer{
+    max-width:960px;
+    margin:0 auto;
+    padding:0 20px 80px;
+}
+
+#model-container{
+    width:100%;
+    height:560px;
+    background:#111;
+    border-radius:16px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.06);
+}
+
+#model-canvas{
+    width:100%;
+    height:560px;
+    border-radius:16px;
+    display:block;
+}
+
+.model-loading{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:#ff7a00;
+    font-size:16px;
+    font-weight:500;
+}
+
+.viewer-hint{
+    text-align:center;
+    color:#555;
+    font-size:13px;
+    margin-top:14px;
+    font-weight:400;
+}
+
+.feature{
+    max-width:960px;
+    margin:0 auto;
+    padding:0 20px 80px;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.feature-text h2{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#555;
+    margin-bottom:16px;
+}
+
+.feature-text h3{
+    font-size:36px;
+    font-weight:800;
+    color:#fff;
+    margin-bottom:20px;
+    line-height:1.2;
+}
+
+.feature-text p{
+    font-size:17px;
+    color:#888;
+    line-height:1.8;
+    font-weight:300;
+}
+
+.feature-image{
+    background:#111;
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.06);
+}
+
+.feature-image img{
+    width:100%;
+    height:auto;
+    display:block;
+}
+
+.specs{
+    max-width:960px;
+    margin:0 auto;
+    padding:0 20px 80px;
+}
+
+.specs h2{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#555;
+    margin-bottom:30px;
+    text-align:center;
+}
+
+.specs-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.spec-card{
+    background:#111;
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:16px;
+    padding:28px 20px;
+    text-align:center;
+}
+
+.spec-card .value{
+    font-size:28px;
+    font-weight:800;
+    color:#ff7a00;
+    margin-bottom:6px;
+}
+
+.spec-card .label{
+    font-size:13px;
+    color:#777;
+    font-weight:500;
+}
+
+.cta{
+    text-align:center;
+    padding:60px 20px 100px;
+}
+
+.cta-box{
+    max-width:600px;
+    margin:0 auto;
+    background:linear-gradient(135deg,rgba(255,122,0,0.1),rgba(255,122,0,0.02));
+    border:1px solid rgba(255,122,0,0.2);
+    border-radius:20px;
+    padding:50px 40px;
+}
+
+.cta-box h2{
+    font-size:32px;
+    font-weight:800;
+    color:#fff;
+    margin-bottom:12px;
+}
+
+.cta-box p{
+    font-size:16px;
+    color:#888;
+    margin-bottom:30px;
+    line-height:1.6;
+}
+
+.cta-box a{
+    display:inline-block;
+    background:#ff7a00;
+    color:#fff;
+    text-decoration:none;
+    padding:16px 40px;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:700;
+    transition:background .2s,transform .2s;
+}
+
+.cta-box a:hover{
+    background:#e56d00;
+    transform:translateY(-1px);
+}
+
+footer{
+    text-align:center;
+    padding:30px 20px;
+    border-top:1px solid rgba(255,255,255,0.06);
+    color:#555;
+    font-size:13px;
+}
+
+footer a{
+    color:#ff7a00;
+    text-decoration:none;
+}
+
+footer a:hover{
+    text-decoration:underline;
+}
+
+@media(max-width:768px){
+    .hero h1{ font-size:40px; }
+    .hero p{ font-size:17px; }
+    .feature-grid{ grid-template-columns:1fr; gap:30px; }
+    .feature-text h3{ font-size:28px; }
+    .specs-grid{ grid-template-columns:1fr 1fr; }
+    #model-container{ height:400px; }
+    #model-canvas{ height:400px; }
+    nav{ padding:14px 20px; }
+    nav .nav-links{ gap:15px; }
+}
+
+</style>
+
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2524676');
+</script>
+<!-- End MailerLite Universal -->
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="brand">GRUMPYMESH</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="board.html" class="active">Board</a>
+        <a href="how-we-got-here.html">Our Story</a>
+    </div>
+</nav>
+
+<div class="hero">
+    <div class="tag">Preorders Opening August 1st</div>
+    <h1>The <span>Grumpy</span> Board</h1>
+    <p>A standalone 1 watt MeshCore board with SMA antenna connector and external Wi-Fi antenna. Build your own repeater, portable node, or custom project.</p>
+</div>
+
+<div class="viewer">
+    <div id="model-container">
+        <div class="model-loading" id="model-loading">Loading 3D Model...</div>
+        <canvas id="model-canvas" style="display:none;"></canvas>
+    </div>
+</div>
+
+<div class="specs">
+    <h2>Specifications</h2>
+    <div class="specs-grid">
+        <div class="spec-card">
+            <div class="value">1W</div>
+            <div class="label">MeshCore Radio</div>
+        </div>
+        <div class="spec-card">
+            <div class="value">SMA</div>
+            <div class="label">Antenna Connector</div>
+        </div>
+        <div class="spec-card">
+            <div class="value">Wi-Fi</div>
+            <div class="label">External Antenna</div>
+        </div>
+        <div class="spec-card">
+            <div class="value">OTA</div>
+            <div class="label">Long Range Firmware Updates</div>
+        </div>
+    </div>
+</div>
+
+<div class="feature">
+    <div class="feature-grid">
+        <div class="feature-text">
+            <h2>Power Output</h2>
+            <h3>Full 1 Watt of Power</h3>
+            <p>The Grumpy Mesh Board delivers a full 1 watt of output power, giving you maximum range for your MeshCore repeater. The board has been tested under many conditions and still has been proven to output 1 watt, Shown on the side a Spectrum Analyzer plot.</p>
+        </div>
+        <div class="feature-image">
+            <img src="Media/output-power.png" alt="Output power measurement showing 1W">
+        </div>
+    </div>
+</div>
+
+<div class="feature">
+    <div class="feature-grid" style="direction:rtl;">
+        <div class="feature-text" style="direction:ltr;">
+            <h2>Power Management</h2>
+            <h3>5V Input with Battery Monitoring</h3>
+            <p>The Grumpy Mesh Board accepts 5V input and is designed to work seamlessly with the Waveshare power board; or any other 5v power source; available as an option when you order. Unlike Heltec and RAK devices that can't recover once battery voltage drops too low (requiring an external solar controller that removes the ability to monitor battery level), the Grumpy Board features graceful power down when voltage gets low and automatically recovers when power returns. You can monitor battery level in real-time, giving you complete peace of mind over your solar deployment's.</p>
+        </div>
+        <div class="feature-image" style="direction:ltr;">
+            <img src="Media/direct-front.png" alt="Grumpy Mesh Board power management">
+        </div>
+    </div>
+</div>
+
+<div class="feature">
+    <div class="feature-grid">
+        <div class="feature-text">
+            <h2>Expansion Port</h2>
+            <h3>Connect Almost Anything</h3>
+            <p>The Grumpy Mesh Board features a built-in expansion port, allowing you to add additional accessories like temperature sensors to monitor your enclosure or outside temperature, a wind sensor, rain sensor, and almost anything you'd like. With open documentation on how to use it, the possibilities are endless.</p>
+        </div>
+        <div class="feature-image">
+            <img src="Media/expansion-port.png" alt="Grumpy Mesh Board expansion port">
+        </div>
+    </div>
+</div>
+
+<div class="cta">
+    <div class="cta-box">
+        <h2>Preorders Opening August 1st</h2>
+        <p>Be the first to get notified when the Grumpy Mesh Board is available for preorder.</p>
+        <div class="ml-embedded" data-form="Pc8Yta"></div>
+    </div>
+</div>
+
+<footer>
+    Follow <a href="https://www.youtube.com/@GrumpyDadOutdoors" target="_blank">@GrumpyDadOutdoors</a> for development updates.
+</footer>
+
+<script type="module">
+import * as THREE from 'three';
+import { VRMLLoader } from 'three/addons/loaders/VRMLLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const canvas = document.getElementById('model-canvas');
+const container = document.getElementById('model-container');
+const loading = document.getElementById('model-loading');
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x111111);
+
+const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.01, 100000);
+camera.position.set(0, 0, 100);
+
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+controls.enableZoom = false;
+
+let isMouseDown = false;
+canvas.addEventListener('mousedown', () => {
+    isMouseDown = true;
+    controls.enableZoom = true;
+});
+canvas.addEventListener('mouseup', () => {
+    isMouseDown = false;
+    controls.enableZoom = false;
+});
+canvas.addEventListener('mouseleave', () => {
+    isMouseDown = false;
+    controls.enableZoom = false;
+});
+
+canvas.addEventListener('wheel', (e) => {
+    if (isMouseDown) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+scene.add(ambientLight);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+directionalLight.position.set(50, 100, 50);
+scene.add(directionalLight);
+
+const loader = new VRMLLoader();
+loader.load('Media/grumpy.wrl', function (object) {
+    object.traverse(function (child) {
+        if (child.isMesh) {
+            child.material.side = THREE.DoubleSide;
+        }
+    });
+    scene.add(object);
+
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    const size = box.getSize(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const fov = camera.fov * (Math.PI / 180);
+    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+    cameraZ *= 1.5;
+    camera.position.set(center.x, center.y, cameraZ);
+    controls.target.copy(center);
+    controls.update();
+
+    loading.style.display = 'none';
+    canvas.style.display = 'block';
+
+    function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+    }
+    animate();
+}, function (progress) {
+    if (progress.total) {
+        const pct = Math.round((progress.loaded / progress.total) * 100);
+        loading.textContent = `Loading 3D Model... ${pct}%`;
+    }
+}, function (error) {
+    loading.textContent = 'Failed to load 3D model.';
+    console.error(error);
+});
+
+window.addEventListener('resize', () => {
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+});
+</script>
+
+</body>
+</html>
