@@ -6,6 +6,21 @@
 
 <title>GrumpyMesh | Coming Soon</title>
 
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<style>
+#model-canvas { width: 100%; height: 500px; border-radius: 12px; background: #111; display: block; }
+.model-wrapper { margin: 40px auto; max-width: 900px; }
+.model-caption { color: #cfcfcf; font-size: 16px; margin-top: 12px; }
+.model-loading { color: #ff7a00; font-size: 18px; padding: 200px 0; }
+</style>
+
 <style>
 
 *{
@@ -319,6 +334,90 @@ The Grumpy Repeater is designed for maximum uptime, efficient power usage, and s
     </p>
 
 </div>
+
+<div class="model-wrapper">
+    <div id="model-container">
+        <div class="model-loading" id="model-loading">Loading 3D Model...</div>
+        <canvas id="model-canvas" style="display:none;"></canvas>
+    </div>
+    <div class="model-caption">3D model of the Grumpy Mesh Board.</div>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { VRMLLoader } from 'three/addons/loaders/VRMLLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const canvas = document.getElementById('model-canvas');
+const container = document.getElementById('model-container');
+const loading = document.getElementById('model-loading');
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x111111);
+
+const camera = new THREE.PerspectiveCamera(45, container.clientWidth / 500, 0.01, 100000);
+camera.position.set(0, 0, 100);
+
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setSize(container.clientWidth, 500);
+renderer.setPixelRatio(window.devicePixelRatio);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+scene.add(ambientLight);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+directionalLight.position.set(50, 100, 50);
+scene.add(directionalLight);
+
+const loader = new VRMLLoader();
+loader.load('grumpy.wrl', function (object) {
+    object.traverse(function (child) {
+        if (child.isMesh) {
+            child.material.side = THREE.DoubleSide;
+        }
+    });
+    scene.add(object);
+
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    const size = box.getSize(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const fov = camera.fov * (Math.PI / 180);
+    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+    cameraZ *= 1.5;
+    camera.position.set(center.x, center.y, cameraZ);
+    controls.target.copy(center);
+    controls.update();
+
+    loading.style.display = 'none';
+    canvas.style.display = 'block';
+
+    function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+    }
+    animate();
+}, function (progress) {
+    if (progress.total) {
+        const pct = Math.round((progress.loaded / progress.total) * 100);
+        loading.textContent = `Loading 3D Model... ${pct}%`;
+    }
+}, function (error) {
+    loading.textContent = 'Failed to load 3D model.';
+    console.error(error);
+});
+
+window.addEventListener('resize', () => {
+    camera.aspect = container.clientWidth / 500;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, 500);
+});
+</script>
+
 <div style="margin-top:50px; text-align:center;">
     <a href="how-we-got-here.html"
        style="color:#ff7a00;
