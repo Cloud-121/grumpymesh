@@ -324,7 +324,47 @@ footer a:hover{
 }
 
 </style>
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:40px;
+    margin-top:35px;
+    flex-wrap:wrap;
+}
 
+.shop-button,
+.learn-button{
+    display:inline-block;
+    text-decoration:none;
+    padding:16px 38px;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:700;
+    transition:.25s;
+}
+
+.shop-button{
+    background:#ff7a00;
+    color:#111;
+    box-shadow:0 8px 20px rgba(255,122,0,.35);
+}
+
+.shop-button:hover{
+    background:#ff9500;
+    transform:translateY(-2px);
+}
+
+.learn-button{
+    border:2px solid #ff7a00;
+    color:#ff7a00;
+    background:transparent;
+}
+
+.learn-button:hover{
+    background:#ff7a00;
+    color:#111;
+}
 <!-- MailerLite Universal -->
 <script>
     (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
@@ -351,6 +391,19 @@ footer a:hover{
     <h1>The <span>Grumpy</span> Board</h1>
     <p>A standalone 1 watt MeshCore board with SMA antenna connector and external Wi-Fi antenna. Build your own repeater, portable node, or custom project.</p>
   <div class="hero-buttons">
+
+    <a class="shop-button"
+       href="https://shop.grumpymesh.com">
+        🛒 Shop Now
+    </a>
+
+    <a class="learn-button"
+       href="#specs">
+        View Specifications
+    </a>
+
+</div>
+  <div class="hero-buttons">
     <a class="shop-button" href="https://shop.grumpymesh.com">
         🛒 Shop Now
     </a>
@@ -368,7 +421,7 @@ footer a:hover{
     </div>
 </div>
 
-<div class="specs">
+<div class="specs" id="specs">
     <h2>Specifications</h2>
     <div class="specs-grid">
         <div class="spec-card">
