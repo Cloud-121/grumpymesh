@@ -4,14 +4,23 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Arial,sans-serif;background:#0b0b0b;color:#fff}
-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;background:#111;border-bottom:1px solid #222}
-nav a{color:#999;text-decoration:none;margin-left:24px} .brand{color:#ff7a00!important;font-weight:800}
+nav{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:18px 40px;background:rgba(10,10,10,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+nav a{color:#999;text-decoration:none;margin-left:24px;font-size:14px;font-weight:500;transition:color .2s}
+nav a:hover{color:#ff7a00}
+.brand{color:#ff7a00!important;font-weight:800;letter-spacing:1px}
 .container{max-width:1000px;margin:auto;text-align:center;padding:60px 20px}
 h1{font-size:64px;color:#ff7a00} h2{margin:15px 0 40px}
 .sneak img{max-width:760px;width:100%;border-radius:16px;box-shadow:0 0 35px #000}
 .logo img{max-width:360px;width:90%;margin:50px auto}
 p{max-width:700px;margin:25px auto;font-size:22px;color:#ccc;line-height:1.6}
 .tagline{margin-top:60px;font-size:26px;font-style:italic;color:#888}
+@media(max-width:768px){
+  nav{padding:14px 20px;flex-wrap:wrap;gap:12px}
+  nav > div:last-child{width:100%;text-align:center}
+  nav a{margin-left:12px;margin-right:12px}
+  h1{font-size:46px}
+  h2{font-size:25px}
+}
 </style></head><body>
 <nav>
 <div><a class="brand" href="index.html">GRUMPYMESH</a></div>
@@ -20,6 +29,7 @@ p{max-width:700px;margin:25px auto;font-size:22px;color:#ccc;line-height:1.6}
 <a href="board.html">Board</a>
 <a href="grumpy-peater.html" style="color:#ff7a00;">Grumpy Peater</a>
 <a href="how-we-got-here.html">How We Got Here</a>
+<a href="avery-natal.html">Avery Repeater</a>
 </div>
 </nav>
 <div class="container">
