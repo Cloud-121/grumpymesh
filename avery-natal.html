@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Avery Repeater | GrumpyMesh</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Arial,Helvetica,sans-serif;background:#0b0b0b;color:white;min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;position:relative;}
+body:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(255,122,0,.18),transparent 65%),linear-gradient(#111,#000);z-index:0;}
+.top-nav{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:18px 40px;background:rgba(10,10,10,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);}
+.top-nav .brand{font-size:20px;font-weight:800;color:#ff7a00;letter-spacing:1px;text-decoration:none;}
+.top-nav .nav-links{display:flex;gap:30px;}
+.top-nav .nav-links a{color:#999;text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;}
+.top-nav .nav-links a:hover,.top-nav .nav-links a.active{color:#ff7a00;}
+.container{position:relative;z-index:2;width:100%;max-width:900px;text-align:center;margin:0 auto;padding:60px 20px;flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;}
+.logo{color:#ff7a00;font-size:64px;font-weight:900;letter-spacing:4px;}
+.line{width:160px;height:4px;background:#ff7a00;margin:30px auto;border-radius:10px;}
+.coming{display:inline-block;margin-top:10px;padding:10px 22px;border:1px solid #ff7a00;border-radius:30px;color:#ff7a00;font-size:18px;font-weight:bold;letter-spacing:2px;background:rgba(255,122,0,.08);}
+.headline{font-size:48px;font-weight:bold;line-height:1.2;margin-top:30px;}
+.highlight{color:#ff7a00;}
+.description{margin:30px auto;max-width:760px;color:#d0d0d0;font-size:21px;line-height:1.8;}
+.tribute{margin:35px auto;max-width:760px;padding:35px;border:2px solid #ff7a00;border-radius:14px;background:rgba(255,122,0,.08);box-shadow:0 0 25px rgba(255,122,0,.15);}
+.tribute h2{color:#ff7a00;font-size:32px;margin-bottom:18px;}
+.tribute p{color:#ddd;font-size:20px;line-height:1.8;margin-top:12px;}
+.foundation-button{display:inline-block;margin-top:28px;background:#ff7a00;color:#111;text-decoration:none;padding:16px 32px;border-radius:10px;font-size:19px;font-weight:bold;transition:.25s;box-shadow:0 8px 20px rgba(255,122,0,.3);}
+.foundation-button:hover{background:#ff9500;transform:translateY(-3px);}
+.back{margin-top:35px;color:#ff7a00;text-decoration:none;font-size:17px;font-weight:bold;}
+.back:hover{text-decoration:underline;}
+.footer{margin-top:45px;color:#666;font-size:14px;}
+@media(max-width:768px){.top-nav{padding:14px 20px;}.top-nav .nav-links{gap:15px;}.logo{font-size:46px;}.headline{font-size:32px;}.description{font-size:18px;}.tribute{padding:25px 18px;}.tribute h2{font-size:27px;}.tribute p{font-size:18px;}}
+</style>
+</head>
+<body>
+<div class="top-nav">
+    <a href="index.html" class="brand">GRUMPYMESH</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="board.html">Board</a>
+        <a href="grumpy-peater.html">Grumpy Peater</a>
+        <a href="how-we-got-here.html">How We Got Here</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="logo">GRUMPYMESH</div>
+    <div class="coming">COMING Q4 2026</div>
+    <div class="line"></div>
+
+    <div class="headline">
+        The <span class="highlight">Avery Repeater</span>
+    </div>
+
+    <div class="description">
+        A Grumpy Mesh project dedicated to the memory of <strong>Avery Natal</strong>.
+    </div>
+
+    <div class="tribute">
+        <h2>Dedicated to the Memory of Avery Natal</h2>
+        <p>
+            <strong>Coming Q4 2026 — The Avery Repeater</strong>
+        </p>
+        <p>
+            A portion of all profit will be donated to the <strong>Avery Natal Foundation</strong>.
+        </p>
+        <a class="foundation-button" href="https://averynatalfoundation.org/" target="_blank" rel="noopener noreferrer">
+            Visit the Avery Natal Foundation
+        </a>
+    </div>
+
+    <a class="back" href="index.html">← Back to GrumpyMesh</a>
+
+    <div class="footer">
+        GrumpyMesh — Building the future of MeshCore.
+    </div>
+</div>
+</body>
+</html>
