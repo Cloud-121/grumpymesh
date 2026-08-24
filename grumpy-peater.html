@@ -16,11 +16,31 @@ body::before { content: ""; position: absolute; inset: 0; background: radial-gra
 .container { position: relative; z-index: 2; width: 100%; max-width: 900px; text-align: center; margin: 0 auto; padding: 60px 20px; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
 .logo { color: #ff7a00; font-size: 64px; font-weight: 900; letter-spacing: 4px; }
 .line { width: 160px; height: 4px; background: #ff7a00; margin: 30px auto; border-radius: 10px; }
-.coming { display: inline-block; margin-top: 10px; padding: 10px 22px; border: 1px solid #ff7a00; border-radius: 30px; color: #ff7a00; font-size: 18px; font-weight: bold; letter-spacing: 2px; background: rgba(255, 122, 0, .08); }
+.coming { max-width: 90%; display: inline-block; margin-top: 10px; padding: 10px 22px; border: 1px solid #ff7a00; border-radius: 30px; color: #ff7a00; font-size: 18px; font-weight: bold; letter-spacing: 2px; background: rgba(255, 122, 0, .08); }
 .headline { font-size: 48px; font-weight: bold; line-height: 1.2; margin-top: 30px; }
 .highlight { color: #ff7a00; }
 .description { margin: 30px auto; max-width: 760px; color: #d0d0d0; font-size: 21px; line-height: 1.8; }
 .description p + p { margin-top: 20px; }
+.features {
+  list-style: none;
+  text-align: left;
+  margin: 25px auto 0;
+  padding: 0;
+  max-width: 720px;
+}
+.features li {
+  position: relative;
+  padding-left: 30px;
+  margin: 18px 0;
+}
+.features li::before {
+  content: "•";
+  position: absolute;
+  left: 8px;
+  color: #ff7a00;
+  font-size: 26px;
+  line-height: 1;
+}
 .sneak { width: 100%; max-width: 760px; margin: 2px auto 6px; }
 .sneak img { display: block; width: 100%; border-radius: 14px; box-shadow: 0 0 25px rgba(0, 0, 0, .5); }
 .logo-card { width: 100%; max-width: 760px; margin: 35px auto 0; padding: 30px; border: 2px solid #ff7a00; border-radius: 14px; background: rgba(255, 122, 0, .08); box-shadow: 0 0 25px rgba(255, 122, 0, .15); }
@@ -48,14 +68,24 @@ body::before { content: ""; position: absolute; inset: 0; background: radial-gra
 
 <main class="container">
   <div class="logo">GRUMPYMESH</div>
-  <div class="coming">COMING SOON</div>
+  <div class="coming">PREORDERS STARTING AUGUST 24TH WITH A VERY LIMITED QUANTITY</div>
   <div class="line"></div>
 
-  <div class="headline">The <span class="highlight">Grumpy Peater</span></div>
+  <div class="headline"> <span class="highlight">The Grumpy King Peater</span></div>
 
   <div class="description">
-    <p>A new addition to the GrumpyMesh family is currently under development.</p>
-    <p>We're not quite ready to reveal everything...</p>
+    <ul class="features">
+      <li>Marine-grade hardware to help prevent saltwater corrosion.</li>
+      <li>Over 15,000mAh of battery capacity, with room for more.</li>
+      <li>10-watt solar panel designed to provide charging capability during cloudy conditions.</li>
+      <li>1-watt radio to punch through noisy environments and trees.</li>
+      <li>Low-loss SMA-to-N antenna adapter to keep feedline loss to a minimum.</li>
+      <li>Long-distance Wi-Fi updates — currently testing distances of up to 500 feet.</li>
+      <li>Accurate battery voltage can be monitored through Solar Controller</li>
+      <li>Expansion port to add your own telemetry toys, with room inside to install</li>
+      <li>On board filter to help clean up noise and out of band frequencies</li>
+      <li>Test have revealed true 1 watt output with improved receive capabilities</li>
+    </ul>
   </div>
 
   <div class="sneak" hidden>
