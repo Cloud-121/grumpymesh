@@ -216,6 +216,46 @@
     font-size:16px;
     padding:9px 18px}
 }
+
+    .gallery{
+        max-width:850px;
+        margin:50px auto 0;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:18px;
+        text-align:center;
+    }
+    .gallery-title{
+        grid-column:1/-1;
+        color:#ff7a00;
+        font-size:30px;
+        font-weight:900;
+        margin:0 0 8px;
+    }
+    .gallery-image{
+        width:100%;
+        height:auto;
+        display:block;
+        border:1px solid #2d2d2d;
+        border-radius:14px;
+        background:#111;
+        box-shadow:0 12px 35px rgba(0,0,0,.35);
+        cursor:pointer;
+        transition:.2s;
+    }
+    .gallery-image:hover{
+        border-color:#ff7a00;
+        transform:translateY(-2px);
+    }
+    .gallery-image:first-of-type{
+        grid-column:1/-1;
+    }
+    @media(max-width:700px){
+        .gallery{grid-template-columns:1fr;gap:15px}
+        .gallery-title{font-size:25px}
+        .gallery-image:first-of-type{grid-column:auto}
+    }
+
 </style>
     </head>
     <body>
@@ -314,6 +354,29 @@
                     </li>
                 </ul>
             </section>
+            
+            <section class="gallery" aria-label="Grumpy X photos">
+                <h2 class="gallery-title">THE GRUMPY X IN THE FIELD</h2>
+                <a href="Media/grumpy-x-enclosure.jpg" target="_blank" rel="noopener noreferrer">
+                    <img class="gallery-image" src="Media/grumpy-x-enclosure.jpg" alt="Grumpy X repeater enclosure and mounting plate">
+                </a>
+                <a href="Media/grumpy-x-batteries.jpg" target="_blank" rel="noopener noreferrer">
+                    <img class="gallery-image" src="Media/grumpy-x-batteries.jpg" alt="Grumpy X repeater battery compartment with 21700 batteries">
+                </a>
+                <a href="Media/grumpy-x-electronics.jpg" target="_blank" rel="noopener noreferrer">
+                    <img class="gallery-image" src="Media/grumpy-x-electronics.jpg" alt="Grumpy X repeater electronics and Heltec V4 radio">
+                </a>
+                <a href="Media/grumpy-x-driveway.jpg" target="_blank" rel="noopener noreferrer">
+                    <img class="gallery-image" src="Media/grumpy-x-driveway.jpg" alt="Grumpy X repeater mounted outdoors">
+                </a>
+                <a href="Media/grumpy-x-mounted.jpg" target="_blank" rel="noopener noreferrer">
+                    <img class="gallery-image" src="Media/grumpy-x-mounted.jpg" alt="Grumpy X repeater mounted on a pole">
+                </a>
+                <a href="Media/grumpy-x-field.jpg" target="_blank" rel="noopener noreferrer">
+                    <img class="gallery-image" src="Media/grumpy-x-field.jpg" alt="Grumpy X repeater installed outdoors in a field">
+                </a>
+            </section>
+
             <section class="notice">
                 <strong>
                     STAY TUNED FOR MORE ANNOUNCEMENTS!
