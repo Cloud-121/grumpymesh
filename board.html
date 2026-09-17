@@ -409,6 +409,51 @@ footer a:hover{
     background:#ff7a00;
     color:#111;
   }
+
+/* Additional Grumpy Board photo gallery */
+.board-gallery{
+    max-width:960px;
+    margin:0 auto;
+    padding:0 20px 80px;
+}
+.board-gallery h2{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#555;
+    margin-bottom:30px;
+    text-align:center;
+}
+.board-gallery-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+.board-gallery-item{
+    background:#111;
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.06);
+    cursor:pointer;
+}
+.board-gallery-item.full{
+    grid-column:1 / -1;
+}
+.board-gallery-item img{
+    width:100%;
+    height:auto;
+    display:block;
+    transition:transform .25s;
+}
+.board-gallery-item:hover img{
+    transform:scale(1.015);
+}
+@media(max-width:768px){
+    .board-gallery-grid{grid-template-columns:1fr;}
+    .board-gallery-item.full{grid-column:auto;}
+}
+
 </style>
 
 <style>
@@ -620,6 +665,28 @@ img, video, iframe {
         </div>
         <div class="feature-image">
             <img src="Media/expansion-port.png" alt="Grumpy Mesh Board expansion port">
+        </div>
+    </div>
+</div>
+
+
+<div class="board-gallery">
+    <h2>The Grumpy Board — Assembly & Components</h2>
+    <div class="board-gallery-grid">
+        <div class="board-gallery-item full">
+            <a href="Media/grumpy-board-assembly-corner.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="Media/grumpy-board-assembly-corner.jpg" alt="Grumpy Board assembled corner view">
+            </a>
+        </div>
+        <div class="board-gallery-item">
+            <a href="Media/grumpy-board-assembly-side.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="Media/grumpy-board-assembly-side.jpg" alt="Grumpy Board assembled side view">
+            </a>
+        </div>
+        <div class="board-gallery-item">
+            <a href="Media/grumpy-board-parts-top-down.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="Media/grumpy-board-parts-top-down.jpg" alt="Grumpy Board components shown from above">
+            </a>
         </div>
     </div>
 </div>
