@@ -238,6 +238,74 @@
         transform:translateY(-2px);
     }
 
+
+    .nav-links a.store-link{
+        color:#111;
+        background:#ff7a00;
+        border-color:#ff7a00;
+        box-shadow:0 0 16px rgba(255,122,0,.35);
+    }
+    .nav-links a.store-link:hover{
+        color:#111;
+        background:#ff9500;
+        border-color:#ff9500;
+        box-shadow:0 0 20px rgba(255,149,0,.5);
+    }
+
+
+    .x-gallery{
+        width:min(1000px,92%);
+        margin:0 auto 20px;
+        text-align:center;
+    }
+    .x-gallery h2{
+        margin:0 0 25px;
+        color:#ff7a00;
+        font-size:28px;
+        font-weight:900;
+        letter-spacing:1px;
+        text-transform:uppercase;
+    }
+    .x-gallery-grid{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:18px;
+    }
+    .x-gallery-item{
+        background:#111;
+        border:1px solid #2d2d2d;
+        border-radius:16px;
+        overflow:hidden;
+        box-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    .x-gallery-item.full{
+        grid-column:1 / -1;
+    }
+    .x-gallery-item a{
+        display:block;
+        line-height:0;
+    }
+    .x-gallery-item img{
+        width:100%;
+        height:auto;
+        display:block;
+        transition:transform .25s;
+    }
+    .x-gallery-item:hover img{
+        transform:scale(1.015);
+    }
+    @media(max-width:800px){
+        .x-gallery{
+            width:92%;
+        }
+        .x-gallery-grid{
+            grid-template-columns:1fr;
+        }
+        .x-gallery-item.full{
+            grid-column:auto;
+        }
+    }
+
 </style>
     </head>
     <body>
@@ -272,6 +340,9 @@
                 </a>
                 <a href="how-we-got-here.html">
                     How We Got Here
+                </a>
+                <a href="https://shop.grumpymesh.com" class="store-link" target="_blank" rel="noopener noreferrer">
+                    🛒 STORE
                 </a>
             </div>
         </nav>
@@ -336,6 +407,33 @@
                     </li>
                 </ul>
             </section>
+
+            <section class="x-gallery">
+                <h2>The Grumpy X — In the Field &amp; In Development</h2>
+                <div class="x-gallery-grid">
+                    <div class="x-gallery-item full">
+                        <a href="Media/grumpy-x-field-mounted.jpg" target="_blank" rel="noopener noreferrer">
+                            <img src="Media/grumpy-x-field-mounted.jpg" alt="Grumpy X repeater mounted in the field">
+                        </a>
+                    </div>
+                    <div class="x-gallery-item">
+                        <a href="Media/grumpy-x-battery-pack.jpg" target="_blank" rel="noopener noreferrer">
+                            <img src="Media/grumpy-x-battery-pack.jpg" alt="Grumpy X 21700 battery pack">
+                        </a>
+                    </div>
+                    <div class="x-gallery-item">
+                        <a href="Media/grumpy-x-enclosure-back.jpg" target="_blank" rel="noopener noreferrer">
+                            <img src="Media/grumpy-x-enclosure-back.jpg" alt="Grumpy X enclosure and mounting plate">
+                        </a>
+                    </div>
+                    <div class="x-gallery-item">
+                        <a href="Media/grumpy-x-electronics.jpg" target="_blank" rel="noopener noreferrer">
+                            <img src="Media/grumpy-x-electronics.jpg" alt="Grumpy X electronics and Heltec V4 assembly">
+                        </a>
+                    </div>
+                </div>
+            </section>
+
             <section class="notice">
                 <strong>
                     STAY TUNED FOR MORE ANNOUNCEMENTS!
